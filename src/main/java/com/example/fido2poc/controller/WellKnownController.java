@@ -50,7 +50,8 @@ public class WellKnownController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> appleAppSiteAssociation() {
         Map<String, Object> body = Map.of(
-                "webcredentials", Map.of("apps", aasaApps),
+                "webcredentials", Map.of("apps", aasaApps,
+                    "details", List.of(Map.of("appID", this.aasaApps.get(0), "paths", List.of("*")))),
                 "webauthn", Map.of("apps", aasaApps)
         );
         return ResponseEntity.ok(body);
